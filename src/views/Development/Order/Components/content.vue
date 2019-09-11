@@ -66,7 +66,5 @@ export default {
 </script>
 
 <style scoped>
-.amap-demo {
-  height: 300px;
-}
+
 </style>

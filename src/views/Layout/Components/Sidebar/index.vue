@@ -15,12 +15,12 @@
       style="background: #fff"
     >
       <!-- <div class="logo">System LOGO</div> -->
-      <div
+      <!-- <div
         id="slide-handler"
         class="slide-handler"
         :class="sidebarState.isOpen ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
         @click="slideSidebar"
-      ></div>
+      ></div> -->
       <VuePerfectScrollbar :settings="scrollOption">
         <el-menu
           mode="vertical"

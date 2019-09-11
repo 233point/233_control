@@ -347,13 +347,7 @@
     <select-deliver-info :show.sync="showDeliver"
                          @sendData="receiveDeliverInfo"
                          :merchantId="customerInfo.merchantId" />
-    <g-map
-          :show.sync="isMapShow"
-          :addressInfo="addressInfo"
-          :chooseType="chooseType"
-          @getAddress="getAddress"
 
-        />
   </div>
 </template>
 
@@ -372,15 +366,13 @@ import {
   Order_Appoint_Status_List,
   Order_Type_list
 } from "@/utils/ENUM";
-import GMap from './Map'
 const addressTree = areaTree.children;
 export default {
   name: 'customerTemplate',
   components: {
     SelectUserInfo,
     SelectDeliverInfo,
-    SelectOrderInfo,
-    GMap
+    SelectOrderInfo
   },
   props: {
     isEdit: {

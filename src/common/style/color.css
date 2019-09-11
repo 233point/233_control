@@ -4,7 +4,7 @@ https://jhildenbiddle.github.io/css-vars-ponyfill/#/
 */
 
 :root {
-  --color-primary: #58c2ef;
+  --color-primary: #E1244E;
   --color-primary-hover: var(--color-primary) '30';
   --color-text: #1f2939;
   --color-success: #13ce66;

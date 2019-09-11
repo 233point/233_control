@@ -12,9 +12,9 @@
     class="header"
     :height="headerHeight"
   >
-    <!-- <div class="menu-control"      @mouseover="menuVisible = true" @click="menuVisible = true">
+    <div class="menu-control"      @mouseover="menuVisible = true" @click="menuVisible = true">
       <a-icon :type="menuVisible ? 'menu-fold' : 'menu-unfold'"/>
-    </div> -->
+    </div>
     <div class="logo" @click="backTohome">
       <img :src="logoUrl" alt="xhe" />
     </div>
@@ -86,7 +86,7 @@
         </li>
       </ul>
     </div>
-    <!-- <a-drawer
+    <a-drawer
       placement="left"
       :closable="false"
       @close="menuVisible = false"
@@ -96,7 +96,7 @@
       width="auto"
     >
       <sidebar v-bind:style="{width: sidebarState.width}"></sidebar>
-    </a-drawer> -->
+    </a-drawer>
   </el-header>
 </template>
 
@@ -127,7 +127,7 @@ export default {
       commonDialog: null,
       driver: null,
       menuVisible: false,
-      logoUrl: "http://superlink.top/web/com_logo_blue.png"
+      logoUrl: "http://47.101.145.67/wp-content/themes/lensnews2.2/images/about_img.jpg"
     };
   },
   computed: {

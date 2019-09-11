@@ -25,8 +25,6 @@ import cssVars from "css-vars-ponyfill";
 
 // load custom theme
 // Element UI module & style
-
-import VueAMap from "vue-amap";
 // custom zhx-vue-plateform icons
 import "@/assets/plateform-font/iconfont.css";
 import "@/assets/tms-icon/iconfont.css";
@@ -44,7 +42,7 @@ import App from "./App";
 
 // config to use Staic router or dynamic one
 // Vue.useStaticRouter = false;
-Vue.useStaticRouter = false;
+Vue.useStaticRouter = true;
 
 // apply plugins
 
@@ -56,35 +54,6 @@ Vue.use(breadcrumb);
 cssVars();
 Vue.config.productionTip = false;
 
-Vue.use(VueAMap);
-
-VueAMap.initAMapApiLoader({
-  key: "8703164b6d9a53e64195238e3e17b1f3",
-  plugin: [
-    "AMap.ToolBar",
-    "AMap.Heatmap",
-    "AMap.GraspRoad",
-    "AMap.TruckDriving",
-    "AMap.RangingTool",
-    "AMap.MouseTool",
-    "AMap.PolyEditor",
-    "AMap.CircleEditor",
-    "AMap.Autocomplete",
-    "AMap.EllipseEditor",
-    "AMap.RectangleEditor",
-    "AMap.PlaceSearch",
-    "AMap.Scale",
-    "AMap.OverView",
-    "AMap.MapType",
-    "AMap.PolyEditor",
-    "AMap.CircleEditor",
-    "AMap.Geocoder",
-    "Geolocation",
-    "DistrictSearch"
-  ],
-  uiVersion: "1.0",
-  v: "1.4.11"
-});
 
 /* eslint-disable no-new */
 new Vue({

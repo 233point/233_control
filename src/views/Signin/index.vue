@@ -10,7 +10,7 @@
     <section v-if="step == 1" class="banner"></section>
     <div class="login-wrapper">
       <section class="signin_step1" v-if="step == 1">
-        <h1>欢迎使用超链云配系统</h1>
+        <h1>欢迎使用233次元系统</h1>
         <div class="role_container">
           <div
             class="role_item"
@@ -33,7 +33,7 @@
       <section class="step2_wrapper" v-if="step == 2">
         <div class="signin">
           <div class="content">
-            <div class="title">欢迎使用超链云配系统</div>
+            <div class="title">欢迎使用233次元系统</div>
             <div class="hr"></div>
             <div class="tips">还没有账号么？点击下面进行注册！</div>
             <simple-tabs v-model="controlType" @change="changeControlType">
@@ -49,7 +49,7 @@
         <div class="login-block">
           <div class="form-content">
             <div class="tabs_login">
-              <div class="sys-logo">超链云配 | {{ role.roleName }}</div>
+              <div class="sys-logo">233次元</div>
               <el-form
                 class="login-form"
                 ref="loginForm"

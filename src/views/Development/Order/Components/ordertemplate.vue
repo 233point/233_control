@@ -28,7 +28,6 @@
             maxlength="200"
             resize="none"
           />
-          <i class="el-icon-location posBtn" @click="chooseAddress(form)"></i>
         </span>
       </el-form-item>
       <el-form-item label="预约服务日期" prop="productContent">
@@ -71,12 +70,6 @@
         <el-button @click="cancel">取消</el-button>
       </el-form-item>
     </el-form>
-    <g-map
-      :show.sync="isMapShow"
-      :addressInfo="addressInfo"
-      @getAddress="getAddress"
-    />
-
     <product-content
       ref="productContent"
       :show.sync="showProductContent"
@@ -95,7 +88,6 @@
 import Validator from "@/utils/extendValidate/extendValidate";
 // api
 import { addMercure, editMercure } from "@/api/order";
-import GMap from "./Map";
 import ProductContent from "./content";
 import { mapGetters } from "vuex";
 
@@ -116,7 +108,7 @@ const initForm = {
 
 export default {
   name: "MercureTemplate",
-  components: { GMap, ProductContent },
+  components: { ProductContent },
   data() {
     return {
       isVisible: false,
@@ -163,7 +155,6 @@ export default {
         value: "label",
         children: "cities"
       },
-      isMapShow: false,
       addressInfo: {},
       showProductContent: false
     };
@@ -208,28 +199,6 @@ export default {
           ];
         }
       }, 300);
-    },
-    chooseAddress(data) {
-      this.isMapShow = true;
-      if (data.lng && data.lat) {
-        this.addressInfo = {
-          lat: data.lat,
-          lng: data.lng,
-          address: data.fullAddress
-        };
-      }
-    },
-    getAddress(lat, lng, address, fullAddress, province, city, area) {
-      this.form.lat = lat;
-      this.form.lng = lng;
-      this.form.location = [lng, lat];
-      this.form.address = address;
-      this.form.fullAddress = fullAddress;
-      this.form.province = province;
-      this.form.city = city;
-      this.form.area = area;
-      // this.$refs.address.$el.children[0].focus();
-      // this.$refs.address.$el.children[0].blur();
     },
     chooseProductContent() {
       this.showProductContent = true;

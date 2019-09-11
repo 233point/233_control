@@ -7,24 +7,25 @@
  -->
 <template>
   <header>
-    <div class="logo">
-      <a href="javascript:;" @click.stop="getToPath('/')">
-        <img
+    <div class="header_container">
+      <div class="logo">
+        <a href="javascript:;" @click.stop="getToPath('/')">233次元
+          <!-- <img
           style="height:24px"
-          src="http://superlink.top/web/com_logo_white.png"
+          src="http://47.101.145.67/wp-content/themes/lensnews2.2/images/about_img.jpg"
           alt=""
-        />
-      </a>
-    </div>
-    <!-- <div class="home_route">
+          />-->
+        </a>
+      </div>
+      <!-- <div class="home_route">
         <ul>
           <li>
             <a href="//superlink.top">superLink</a>
-          </li> -->
-    <!-- <li>
+      </li>-->
+      <!-- <li>
             <a href="javascript:;"  @click.stop="getToPath('/driver-settled')">司机入驻</a>
-          </li> -->
-    <!-- <li>
+      </li>-->
+      <!-- <li>
             <a href="javascript:;"  @click.stop="getToPath('/signin','carrier')">服务商入驻</a>
           </li>
           <li>
@@ -32,35 +33,33 @@
           </li>
           <li>
             <a href="javascript:;"  @click.stop="getToPath('/')">关于我们</a>
-          </li> -->
-    <!-- </ul>
-      </div> -->
-    <div class="control_container">
-      <ul>
-        <li>
-          <a @click.stop="getToPath('/driver-settled')">司机入驻</a>
-        </li>
-        <li>
-          <a v-if="token" @click="enterConsole">控制台</a>
-        </li>
-        <li>
-          <a-popover placement="bottomRight">
-            <template slot="content">
-              <user-info />
-            </template>
-            <span v-if="token" class="name">
-              {{ userName ? userName : userAccount }}
-              <a-icon type="caret-down" />
-            </span>
-          </a-popover>
-        </li>
-        <li v-if="!showLoginBtn">
-          <a class="login_btn" v-if="!token" @click="login">登录</a>
-        </li>
-        <li v-if="!showSigninBtn">
-          <a class="sigin_btn" v-if="!token" @click="signin">注册</a>
-        </li>
-      </ul>
+      </li>-->
+      <!-- </ul>
+      </div>-->
+      <div class="control_container">
+        <ul>
+          <li>
+            <a v-if="token" @click="enterConsole">控制台</a>
+          </li>
+          <li>
+            <a-popover placement="bottomRight">
+              <template slot="content">
+                <user-info/>
+              </template>
+              <span v-if="token" class="name">
+                {{ userName ? userName : userAccount }}
+                <a-icon type="caret-down"/>
+              </span>
+            </a-popover>
+          </li>
+          <li v-if="!showLoginBtn">
+            <a class="login_btn" v-if="!token" @click="login">登录</a>
+          </li>
+          <li v-if="!showSigninBtn">
+            <a class="sigin_btn" v-if="!token" @click="signin">注册</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </header>
 </template>
@@ -144,19 +143,25 @@ export default {
 }
 header {
   height: 68px;
+  line-height:68px;
   // padding: 0 150px;
   position: absolute;
-  // width: -webkit-fill-available;
-  width: 1240px;
-  left: calc((100% - 1240px) / 2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #0e1a28;
+  width: 100%;
+  .header_container{
+    width: 1240px;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  
+  color: #E1244E;
   z-index: 10;
-  // box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
-  // background-color: #fff;
-  // border-bottom: 1px solid #d9d9d9;
+  background-color: #fff;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 3px 20px 3px rgba(0, 64, 128, .2);
   .logo {
     a {
       font-size: 22px !important;
@@ -194,14 +199,14 @@ header > span {
   font-size: 2rem;
 }
 header a {
-  color: #fff;
+  color: #E1244E;
   font-size: 14px;
   text-decoration: none;
 }
 a:hover {
   text-decoration: none;
   animation: jello 1000ms both;
-  color: white;
+  color: #E1244EDD;
 }
 a:link {
   text-decoration: none;
@@ -211,21 +216,20 @@ a:link {
   padding: 8px 25px;
 }
 .login_btn {
-  border: 1px solid rgba(255, 255, 255, 1);
-  color: white;
+  border: 1px solid #E1244E;
+  color: #E1244E;
   background: transparent;
 }
 .login_btn:hover {
   border: 1px solid transparent;
   color: var(--color-primary);
-  background: white;
+  background: #E1244E;
 }
 .sigin_btn {
-  // border:1px solid var(--color-primary);
-  color: var(--color-primary);
-  background: white;
+  color: white;
+  background: #E1244E;
 }
 .name {
-  color: white;
+  color: #E1244E;
 }
 </style>

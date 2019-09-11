@@ -10,7 +10,7 @@
     <div class="login-wrapper">
       <div class="signin">
         <div class="content">
-          <div class="title">欢迎使用超链云配系统</div>
+          <div class="title">欢迎使用233次元系统</div>
           <div class="hr"></div>
           <div class="tips">还没有账号么？点击下面进行注册！</div>
           <simple-tabs v-model="controlType" @change="changeControlType">
@@ -26,7 +26,7 @@
       <div class="login-block">
         <div class="form-content">
           <div class="tabs_login">
-            <div class="sys-logo">登录超链云配控制台</div>
+            <div class="sys-logo">登录233次元控制台</div>
             <el-form
               class="login-form"
               ref="loginForm"

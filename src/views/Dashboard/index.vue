@@ -98,27 +98,8 @@
           </common-wrapper>
         </el-col>
         <el-col :span="8">
-          <!-- 客户热力图 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-            v-if="$store.getters.roleType.includes('merchant')"
-          >
-            <el-row type="flex" align="center" justify="space-between">
-              <el-col :span="24">
-                <p class="chart-title">客户热力图</p>
-              </el-col>
-            </el-row>
-            <div class="heat_map">
-              <heat-map
-                @initData="getHeartmapList"
-                :heatmapData="heatmapData"
-              ></heat-map>
-            </div>
-          </common-wrapper>
           <!-- 商户订单数 -->
-          <common-wrapper v-else class="chart-container"  :border="false">
+          <common-wrapper class="chart-container"  :border="false">
             <el-row
               type="flex"
               align="center"
@@ -203,7 +184,6 @@ import ChartStar from "./Components/star";
 import OrderStat from "./Components/stat";
 import MerchantsList from "./Components/merchantList";
 import Welcome from "./Components/Welcome";
-import HeatMap from "./Components/heatMap";
 import Customer from "./Components/customer";
 import ChartsCategory from "./Components/charts-category";
 
@@ -236,7 +216,6 @@ export default {
     CommonWrapper,
     CommonTable,
     Customer,
-    HeatMap,
     CommonContent,
     ChartWaybill,
     ChartInstall,
