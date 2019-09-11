@@ -9,39 +9,22 @@
   <div class="wrapper">
     <div class="welcome_card">
       <div class="welcomt_title">
-        <!-- <div class="user_logo" :style="{background:'url('+userLogo+')'}"></div> -->
         <div>
-          <img :src="logo" alt="" />
+          <img :src="logo" alt="">
         </div>
         <div>
-          <div>早安，{{ userName || userAccount }}，祝你开心每一天！</div>
-          <div>
-            <span v-if="merchantInfo.compBrif">{{ merchantInfo.compBrif }}</span>
-            <span v-if="merchantInfo.compBrif && merchantInfo.city">|</span>
-            <span v-if="merchantInfo.city">{{ merchantInfo.city }}</span>
-          </div>
+          <div>{{ userName || '侍奉无上至尊的人' }}</div>
+          <div>每一个不曾起舞的日子，都是对生命对辜负。</div>
         </div>
       </div>
       <div class="tongji_content">
-        <div
-          class="tongji_item"
-          v-if="$store.getters.roleType.includes('merchant')"
-        >
-          <div class="tongji_title">服务司机</div>
-          <div class="tongji_number">{{ statData.driverCount }}</div>
-        </div>
-        <div class="tongji_item" v-else-if="!($store.getters.roleType.includes('regionMarcketManager') || $store.getters.roleType.includes('regionManager') || $store.getters.roleType.includes('marcketManager') || $store.getters.roleType.includes('cityManager'))">
-          <div class="tongji_title">服务商户</div>
-          <div class="tongji_number">{{ statData.merchantCount }}</div>
-        </div>
-        <div class="shu_line" v-if="$store.getters.roleType.includes('merchant') || ($store.getters.roleType.includes('regionMarcketManager') || $store.getters.roleType.includes('regionManager') || $store.getters.roleType.includes('marcketManager') || $store.getters.roleType.includes('cityManager'))"></div>
-        <!-- <div class="tongji_item">
-              <div class="tongji_title">单量排名</div>
-              <div class="tongji_number"><span>3</span><span class="total_number">/510</span></div>
-          </div>
-          <div class="shu_line"></div> -->
         <div class="tongji_item">
-          <div class="tongji_title">今日订单</div>
+          <div class="tongji_title">累计番剧</div>
+          <div class="tongji_number">{{ statData.driverCount || 0}}</div>
+        </div>
+        <div class="shu_line"></div>
+        <div class="tongji_item">
+          <div class="tongji_title">本季新增</div>
           <div class="tongji_number">{{ statData.todayWaybillCount || 0 }}</div>
         </div>
       </div>
@@ -60,7 +43,7 @@ export default {
   },
   data() {
     return {
-      logo: "http://superlink.top/web/Gradual_change.png"
+      logo: "https://cdn.calamus.xyz/leimu.jpeg"
     };
   },
   watch: {},
@@ -80,6 +63,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@keyframes rotateIn {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate3d(0, 0, 1, 360deg);
+        opacity: 0.6;
+    }
+}
 .wrapper {
   .welcome_card {
     transition: all 0.3s linear;
@@ -131,9 +124,12 @@ export default {
       margin-right: 20px;
     }
     img {
-      height: 40px;
+      height: 60px;
       margin-right: 30px;
-      border-radius: 20px;
+      border-radius: 100%;
+      &:hover{
+        animation: rotateIn 1000ms both
+      }
     }
   }
 }

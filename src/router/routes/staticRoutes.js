@@ -24,19 +24,19 @@ export const constantRouterMap = [
         path: "home",
         name: "Home",
         component: _import_("Home/index"),
-        meta: { title: "主页", icon: "xhefont xhe-line", noCache: false }
+        meta: { title: "主页", icon: "el-icon-cold-drink", noCache: false }
       },
       {
         path: "/login",
         name: "login",
         component: _import_("Login/index"),
-        meta: { title: "登录", icon: "fdddfont icon-home", noCache: false }
+        meta: { title: "登录", icon: "el-icon-cold-drink", noCache: false }
       },
       {
         path: "/signin",
         name: "signin",
         component: _import_("Signin/index"),
-        meta: { title: "注册", icon: "fdddfont icon-home", noCache: false }
+        meta: { title: "注册", icon: "el-icon-cold-drink", noCache: false }
       }
     ],
     hidden: true
@@ -49,7 +49,7 @@ export const constantRouterMap = [
         path: "dash",
         name: "Dashboard",
         component: _import_("Dashboard/index"),
-        meta: { title: "主页", icon: "xhefont xhe-line", noCache: false }
+        meta: { title: "主页", icon: "el-icon-cold-drink", noCache: false }
       }
     ]
   },

@@ -9,67 +9,58 @@
   <div class="order_stat">
     <el-row :gutter="40" class="panel-group">
       <el-col :span="6" class="card-panel-col" style="padding-left:10px;">
-        <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+        <div class="card-panel" @click="goToPath('anime')">
           <div class="card-panel-icon-wrapper icon-people">
             <i class="peoples el-icon-goods"></i>
           </div>
           <div
             class="card-panel-description"
-            v-if="$store.getters.roleType.includes('merchant')"
           >
             <div class="card-panel-text">
-              累计下单
+              全部番剧
             </div>
             <div class="card-panel-num">{{ statData.distributeCount }}</div>
-          </div>
-          <div class="card-panel-description" v-else>
-            <div class="card-panel-text">
-              累计接单
-            </div>
-            <div class="card-panel-num">{{ statData.receiveCount }}</div>
           </div>
         </div>
       </el-col>
       <el-col :span="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('messages')">
+        <div class="card-panel" @click="goToPath('tag')">
           <div class="card-panel-icon-wrapper icon-message">
             <i class="peoples el-icon-help"></i>
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              累计服务完成
+              全部标签
             </div>
             <div class="card-panel-num">{{ statData.finishedCount }}</div>
-            <!-- <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" /> -->
           </div>
         </div>
       </el-col>
       <el-col :span="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('purchases')">
+        <div class="card-panel" @click="goToPath('manka')">
           <div class="card-panel-icon-wrapper icon-money">
             <i class="peoples el-icon-video-camera"></i>
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              累计异常订单
+              全部漫画
             </div>
             <div class="card-panel-num">{{ statData.abnormalCount }}</div>
-            <!-- <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" /> -->
           </div>
         </div>
       </el-col>
       <el-col :span="6"
               class="card-panel-col" style="padding-right:10px;">
         <div class="card-panel"
-             @click="handleSetLineChartData('purchases')">
+             @click="goToPath('picture')">
           <div class="card-panel-icon-wrapper icon-star">
             <i class="peoples el-icon-star-off"></i>
           </div>
           <div class="card-panel-description">
             <div class="card-panel-text">
-              服务评分
+              全部图片
             </div>
-            <div class="card-panel-num">{{pingfen}}</div>
+            <div class="card-panel-num">{{statData.abnormalCount}}</div>
           </div>
         </div>
       </el-col>
@@ -90,8 +81,8 @@ export default {
   },
   components: {},
   methods: {
-    handleSetLineChartData(type) {
-      this.$emit("handleSetLineChartData", type);
+    goToPath(type) {
+      console.log("goToPath",type)
     }
   }
 };

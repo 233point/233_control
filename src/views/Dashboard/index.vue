@@ -9,444 +9,58 @@
   <div class="behavior-list">
     <common-content :flex="100">
       <welcome :statData="statData" />
-      <order-stat :statData="statData" :pingfen="pingfen"/>
-      <el-row>
-        <el-col :span="16">
-          <!-- 当日配装进度 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-          >
-            <el-row>
-              <p class="chart-title">订单信息</p>
-            </el-row>
-            <chart-install
-              :getSeries="mulitstatData"
-              @initDate="waybillmulitstat"
-            ></chart-install>
-          </common-wrapper>
-        </el-col>
-        <el-col :span="8">
-          <!-- 区域订单量 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-          >
-            <el-row>
-              <p class="chart-title">服务排行榜</p>
-            </el-row>
-            <merchants-list
-              :driverData="driverData"
-              :plateNoData="plateNoData"
-              @initData="serviceRankingList"
-            >
-            </merchants-list>
-          </common-wrapper>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col :span="8">
-          <!-- 配装进度 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-          >
-            <el-row type="flex" align="center" justify="space-between">
-              <el-col :span="24">
-                <p class="chart-title">配装进度</p>
-                <el-select v-model="waybillStat.merchantId" @change="merchantChange" v-if="!$store.getters.roleType.includes('merchant')" filterable placeholder="请选择商户">
-                  <el-option
-                    v-for="(item, index) in merchantList"
-                    :key="index"
-                    :label="item.merchantName"
-                    :value="item.merchantId"
-                  />
-                </el-select>
-              </el-col>
-            </el-row>
-            <Install-progress
-              :getSeries="transProgressData"
-            ></Install-progress>
-          </common-wrapper>
-        </el-col>
-        <el-col :span="8">
-          <!-- 订单分布情况 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-          >
-            <el-row type="flex" align="center" justify="space-between">
-              <el-col :span="24">
-                <p class="chart-title">订单分布情况</p>
-                <el-select v-model="waybillStat.merchantId" @change="merchantChange" v-if="!$store.getters.roleType.includes('merchant')" filterable placeholder="请选择商户">
-                  <el-option
-                    v-for="(item, index) in merchantList"
-                    :key="index"
-                    :label="item.merchantName"
-                    :value="item.merchantId"
-                  />
-                </el-select>
-              </el-col>
-            </el-row>
-            <chart-fenbu
-              :getSeries="waybillStatByAreaData"
-            ></chart-fenbu>
-          </common-wrapper>
-        </el-col>
-        <el-col :span="8">
-          <!-- 商户订单数 -->
-          <common-wrapper class="chart-container"  :border="false">
-            <el-row
-              type="flex"
-              align="center"
-              justify="space-between"
-            >
-              <el-col :span="24">
-                <p class="chart-title">商户订单数</p>
-              </el-col>
-            </el-row>
-            <div class="heat_map">
-              <charts-category @initData="getMerchantsbills" :getSeries="categoryData"></charts-category>
-            </div>
-          </common-wrapper>
-        </el-col>
-      </el-row>
-      <el-row>
-        <el-col>
-          <!-- 客户评价 -->
-          <common-wrapper
-            class="chart-container"
-            :border="false"
-            :radius="false"
-          >
-            <el-row type="flex" align="center" justify="space-between">
-              <el-col :span="24">
-                <p class="chart-title customer_evalute">客户评价</p>
-                <el-date-picker
-                  v-model="customerSearch.date"
-                  @change="cStatSatisfyByWaybillType"
-                  type="daterange"
-                  align="right"
-                  unlink-panels
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                  :picker-options="pickerOptions"
-                >
-                </el-date-picker>
-                <!-- <el-select v-model="customerSearch.merchantId" v-if="!$store.getters.roleType.includes('merchant')" filterable placeholder="请选择商户">
-                  <el-option
-                    v-for="(item, index) in merchantList"
-                    :key="index"
-                    :label="item.merchantName"
-                    :value="item.merchantId"
-                  />
-                </el-select> -->
-              </el-col>
-            </el-row>
-            <customer
-              :questionData="questionData"
-              :customerData="customerData"
-              @initData="cStatSatisfyByWaybillType"
-            ></customer>
-          </common-wrapper>
-        </el-col>
-      </el-row>
+      <Banner  />
+      <order-stat :statData="statData" />
     </common-content>
   </div>
 </template>
 
 <script>
-/**
- * Dashboard Module
- * ----------------------
- * Author: zhou qi
- * Date: 2018.03.20
- */
 import store from "@/store";
 import moment from "moment";
 import { mapGetters } from "vuex";
-import { baseTheme } from "@/utils/theme";
 import CommonWrapper from "@/components/commonWrapper";
 import CommonTable from "@/components/commonTable";
 import CommonContent from "@/components/commonContent";
-import ChartAll from "./Components/charts-all";
-import ChartInstall from "./Components/charts-install";
-import InstallProgress from "./Components/install-progress";
-import ChartWaybill from "./Components/charts-waybill";
-import ChartFenbu from "./Components/fenbu";
-import ChartFinish from "./Components/finish";
-import ChartStar from "./Components/star";
 import OrderStat from "./Components/stat";
-import MerchantsList from "./Components/merchantList";
 import Welcome from "./Components/Welcome";
-import Customer from "./Components/customer";
-import ChartsCategory from "./Components/charts-category";
+import Banner from "./Components/Banner";
 
-// api
-import {
-  userindicatorscollection,
-  waybillmulitstat,
-  serviceRankingList,
-  cStatSatisfyByWaybillType,
-  cQuestionPointStat,
-  getHeartmap,
-  transProgress,
-  getWaybillStatByArea,
-  merchantsbills,
-  getAverageSatisfactionByRoleType,
-  getTransProgress,
-  plateNoList,
-  driverList
-
-} from "@/api/dashboard";
-import { setSession, getSession } from "@/utils/session";
-import { getTreeNode } from "@/utils/generateTree";
-import { getMerchantsByAssembly } from "@/api/order";
 export default {
   name: "Dashboard",
   components: {
     Welcome,
     OrderStat,
-    MerchantsList,
     CommonWrapper,
     CommonTable,
-    Customer,
     CommonContent,
-    ChartWaybill,
-    ChartInstall,
-    InstallProgress,
-    ChartAll,
-    ChartFenbu,
-    ChartFinish,
-    ChartStar,
-    ChartsCategory
+    Banner
   },
   data() {
     return {
-      waybillCount: 0,
       statData: {
-        abnormalCount: 0,
-        distributeCount: 0,
-        finishedCount: 0,
-        receiveCount: 0,
-        cumulativeOrder: 0,
-        driverCount: 0,
-        serviceScore: 0,
-        waybillOfToday: 0,
+        abnormalCount: 233,
+        distributeCount: 233,
+        finishedCount: 233,
+        receiveCount: 233,
+        cumulativeOrder: 233,
+        driverCount: 233,
+        serviceScore: 233,
+        waybillOfToday: 233,
         waybillRank: "",
-        merchantCount: 0,
-        accumulatedReceipt: 0,
-        todayWaybillCount:0
+        merchantCount: 233,
+        accumulatedReceipt: 233,
+        todayWaybillCount:233
       },
-      pingfen:"0",
-      customerSearch: {
-        date: null,
-        startTime: '',
-        endTime: ''
-      },
-      waybillStat:{
-        merchantId:''
-      },
-      transProgress:{
-        merchantId:''
-      },
-      questionData: [],
-      customerData: [],
-      transProgressData: [],
-      merchantList: [],
-      mulitstatData: [],
-      heatmapData: [],
-      serviceRankingData: [],
-      mapCenter: [121.59996, 31.197646],
-      waybillAllList: {},
-      waybillStatByAreaData: {},
-      transProgressList: [],
-      categoryData:[],
-      plateNoData:[],
-      driverData:[],
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: "最近一周",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-              picker.$emit("pick", [start, end]);
-            }
-          },
-          {
-            text: "最近一个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-              picker.$emit("pick", [start, end]);
-            }
-          },
-          {
-            text: "最近三个月",
-            onClick(picker) {
-              const end = new Date();
-              const start = new Date();
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
-              picker.$emit("pick", [start, end]);
-            }
-          }
-        ]
-      }
     };
   },
   computed: {
-    ...mapGetters(["systemTheme"]),
-    systemColor() {
-      return baseTheme[this.systemTheme];
-    }
   },
   mounted() {
-    this.getWaybillStatList()
-    this.initStat();
   },
   activated() {
-    this.initStat();
   },
   methods: {
-    //获取商户
-    getMerchantsByAssembly() {
-      return new Promise((resolve, reject) => {
-        getMerchantsByAssembly({}).then(res => {
-           if(!res.error) {
-              this.merchantList = res;
-              resolve()
-            }
-        })
-      })
-    },
-    async initStat() {
-       if (!this.$store.getters.roleType.includes("merchant")) {
-        await this.getMerchantsByAssembly();
-        if(this.merchantList && this.merchantList.length>0){
-          this.waybillStat.merchantId = this.merchantList[0].merchantId
-        }
-      }else{
-        this.waybillStat.merchantId = this.$store.getters.userId
-      }
-      this.getTransProgressList()
-      this.getWaybillStatByAreaList()
-    },
-    merchantChange(){
-      this.getTransProgressList()
-      this.getWaybillStatByAreaList()
-    },
-    //司机、今日订单和各状态订单数统计
-    getWaybillStatList() {
-      userindicatorscollection().then(res => {
-        if (!res.error) {
-          this.statData = res;
-        }
-      });
-      getAverageSatisfactionByRoleType().then(res => {
-        if (!res.error) {
-          this.pingfen = res.averageSatisfaction;
-        }
-      })
-    },
-    //订单信息柱状图
-    waybillmulitstat(params) {
-      waybillmulitstat(params).then(res => {
-        if (!res.error) {
-          this.mulitstatData = res;
-        }
-      });
-    },
-    //服务排行榜
-    serviceRankingList() {
-      plateNoList().then(res => {
-        if(!res.error){
-          this.plateNoData = res;
-        }
-      })
-      driverList().then(res => {
-        if(!res.error){
-          this.driverData = res;
-        }
-      })
-    },
-    //客户满意度，问题统计
-    cStatSatisfyByWaybillType() {
-      let params = this.customerSearch;
-      if (params.date && params.date.length) {
-        params.startTime = params.date[0];
-        params.endTime = params.date[1];
-      } else {
-        params.startTime = params.endTime = '';
-      }
-      cStatSatisfyByWaybillType({ ...params }).then(res => {
-        if (!res.error) {
-          this.customerData = res;
-        }
-      });
-      cQuestionPointStat({ ...params }).then(res => {
-        if (!res.error) {
-          this.questionData = res;
-        }
-      });
-    },
-
-    // 获取客户热力图
-    getHeartmapList(params) {
-      getHeartmap(params).then(res => {
-        if (!res.error) {
-          this.heatmapData = res.customerLocationVoList;
-          let a = res.location[0];
-          let b = res.location[1];
-          this.mapCenter = [Math.max(a, b), Math.min(a, b)];
-        }
-      });
-    },
-    // 获取当日配装进度
-    getTransProgressList() {
-      getTransProgress(this.waybillStat).then(res => {
-        if (!res.error) {
-          this.transProgressData = res;
-        }
-      });
-    },
-    // 获取订单总量  this.waybillCount   countType
-    getWaybillStatByDayList(params) {
-      let data = {
-        countType: this.waybillCount
-      };
-      params = Object.assign(params, data);
-      getWaybillStatByDay(params).then(res => {
-        if (!res.error) {
-          this.waybillAllList = res;
-        }
-      });
-    },
-    // 区域订单量
-    getWaybillStatByAreaList() {
-      getWaybillStatByArea(this.waybillStat).then(res => {
-        if (!res.error) {
-          this.waybillStatByAreaData = res;
-        }
-      });
-    },
-    getMerchantsbills(){
-      merchantsbills().then(res => {
-        if (!res.error) {
-          this.categoryData = res;
-        }
-      });
-    },
-    waybillAllChange() {
-      this.getWaybillStatByDayList(params);
-    },
     formatTime: function(row) {
       return moment(row.updateTime).format("YYYY-MM-DD HH:mm:ss");
     }
