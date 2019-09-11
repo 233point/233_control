@@ -1,0 +1,223 @@
+/**
+ * COMMON SCSS STYLE
+ *
+**/
+$base-font-xs: 12px;
+$base-font-s: 14px;
+$base-font-m: 16px;
+$base-font-l: 18px;
+
+$base-dark-color: #212121;
+$base-light-color: #f2f2f2;
+$base-light-hover-color: #f2f2f236;
+$base-white-color: #fff;
+
+$base-red-color: #f44336;
+$base-blue-color: #03a9f4;
+$base-blue-hover-color: #03a9f430;
+$base-indigo-color: #3f51b5;
+$base-green-color: #4caf50;
+$base-gray-color: #9e9e9e;
+
+@mixin flexCenter {
+	align-items: center;
+	justify-content: center;
+}
+.primary_color{
+	color: var(--color-primary)
+}
+.error_color{
+	color: var(--color-danger)
+}
+.success_color{
+	color: var(--color-success)
+}
+// 配置居右显示
+.flex-right {
+	display: flex;
+	justify-content: flex-end;
+}
+
+// 块级包裹的内容
+// .section-content {
+
+// }
+
+// 覆盖原有自定义滚动条样式,保证滚动条始终的层级始终在顶部
+.ps__scrollbar-y-rail {
+	z-index: 500;
+}
+
+// 修正顶部菜单按钮中的ICON样式
+button {
+	&.el-button {
+		i.fdddfont {
+			font-size: 13px;
+		}
+
+		i.fdddfont + span {
+			margin-left: 5px;
+		}
+	}
+}
+
+// 覆盖sidebar navigation 样式
+.el-menu-item,
+.el-submenu__title {
+	height: 40px !important;
+	font-size: 1.1rem;
+	line-height: 40px !important;
+
+	i.zvpfont {
+		display: inline-block;
+		font-size: 18px;
+		width: 24px;
+		text-align: center;
+		margin-right: 5px;
+	}
+
+	span {
+		line-height: 40px;
+	}
+}
+
+.el-header{
+  padding: 0px !important;
+}
+
+.el-submenu .el-menu-item {
+	line-height: 40px;
+	min-width: 180px;
+}
+
+.hide-sidebar i {
+	font-size: 20px !important;
+}
+
+.el-menu--collapse .el-submenu .el-menu {
+	z-index: 500;
+}
+
+// 不显示百度地图的版权信息
+.BMap_cpyCtrl,
+.anchorBL {
+	display: none;
+}
+
+/**
+ * 自定义 Vue Transition Animation
+ *
+ */
+.scale-left-enter-active {
+	animation: scaleLeft 0.3s;
+}
+.scale-left-leave-active {
+	animation: scaleLeft 0.3s reverse;
+}
+
+@keyframes scaleLeft {
+	0% {
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+	100% {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+}
+
+.text-c {
+	text-align: center;
+}
+.text-r {
+	text-align: right;
+}
+.text-l {
+	text-align: left;
+}
+.pad-b-10 {
+	padding-bottom: 10px;
+}
+.mar-l-5{
+	margin-left: 5px;
+}
+.mar-r-10{
+	margin-right: 10px;
+}
+.mar-t-30 {
+	margin-top: 30px;
+}
+.w100p {
+	width: 100% !important;
+}
+.pos-r {
+	position: relative;
+}
+.pos-a {
+	position: absolute;
+}
+.el-tooltip__popper {
+	max-width: 700px !important;
+	word-wrap: break-word !important;
+	word-break: normal !important;
+}
+.remark {
+	white-space: normal;
+	word-wrap: break-word !important;
+	word-break: normal !important;
+}
+
+.wrap {
+	word-break: break-all;
+}
+
+.el-upload-list__item-name {
+	max-width: 400px !important;
+}
+
+a[title='站长统计'] {
+	display: none !important;
+}
+
+.xhe-header-menu {
+	top: 49px !important;
+	left: 0px !important;
+	.ant-drawer-body {
+		padding: 0px !important;
+	}
+}
+
+a {
+	text-decoration: none;
+	&:hover {
+		text-decoration: none;
+		color: var(--color-primary-hover);
+	}
+	&:active {
+		text-decoration: none;
+	}
+	&:visited {
+		text-decoration: none;
+	}
+	color: var(--color-primary);
+}
+
+// 解决element切换偶尔的不对齐问题
+body .el-table th.gutter {
+	display: table-cell !important;
+}
+.el-drawer__body {
+	overflow: auto !important;
+}
+.el-drawer__header {
+	font-size: 20px !important;
+}
+
+.customer_container {
+	.el-textarea__inner {
+		background: transparent !important;
+	}
+}
+.merchant_drawer{
+	padding:0 50px;
+}

@@ -1,0 +1,600 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: Calamus
+ * @Date: 2019-08-14 16:10:13
+ * @LastEditTime: 2019-09-03 17:42:14
+ * @LastEditors: Please set LastEditors
+ -->
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+   <meta charset="UTF-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <link rel="icon" type="image/x-icon"
+     href="http://superlink.top/web/ctms_logo.png">
+   <title>满意度调研</title>
+   <!-- import CSS -->
+   <!-- <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"> -->
+   <link href="https://cdn.bootcss.com/element-ui/2.11.0/theme-chalk/index.css" rel="stylesheet">
+   <!-- 兼容es6 -->
+ <script src="https://cdn.bootcss.com/babel-polyfill/7.4.4/polyfill.min.js"></script>
+ <script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+
+   <style>
+     * {
+       padding: 0px;
+       margin: 0px;
+     }
+
+     .father_question_container .el-radio {
+       display: block;
+       margin-bottom: 1rem;
+     }
+
+     .app{
+      min-height: 100vh;
+     }
+     .app.loading{
+      background-color: #24A9F0;
+     }
+     .app.finish{
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     }
+     .finish p{
+      font-size:21px;
+      text-align: center;
+      padding:40px 0 ;
+     }
+
+     .banner {
+       width: 100%;
+     }
+
+     .banner img {
+       width: 100%;
+     }
+
+     .section {
+       border-radius: 8px;
+       background: #fff;
+       margin-bottom: 1rem;
+     }
+     .father_question_container{
+       padding:1rem;
+     }
+
+     .answer {
+       margin:15px 15px 0px 15px;
+     }
+
+     .answer .tips .left,
+     .answer .tips .right {
+       width: 1.5rem;
+     }
+
+     /* .answer .tips .left{
+        width:1.5rem;
+      } */
+     .answer .tips .right {
+       float: right
+     }
+
+     .btn_control {
+       text-align: center;
+       margin: 15px auto;
+       margin-bottom:45px;
+     }
+
+     .btn_control button {
+       width: 100%;
+       height: 52px;
+       background: rgba(18, 33, 69, 1);
+       border-radius: 26px;
+       box-shadow: 0 5px 10px #FE6666;
+     }
+
+     .backword {
+       font-size: 13px;
+       font-family: PingFangSC-Regular;
+       font-weight: 400;
+       color: rgba(119, 119, 119, 1);
+       line-height: 18px;
+     }
+
+     .tips {
+       border-top: 1px solid #E3E3E3;
+       padding-top: 1rem;
+     }
+
+     .el-rate__icon {
+       margin-right: 2px !important;
+     }
+
+     .el-form-item {
+       margin-bottom: 0px !important;
+     }
+
+     .el-form-item__label,
+     .el-form-item--small .el-form-item__content,
+     .el-form-item--small .el-form-item__label {
+       line-height: 18px !important;
+     }
+
+     .el-form-item__content {
+       /* margin-left: 25px; */
+     }
+
+     .item_label {
+       display: flex;
+       align-items: flex-start;
+       margin-bottom: 18px;
+     }
+
+     .listStyle {
+       position: relative;
+       width: 20px;
+       height: 20px;
+       color: white;
+       background-size: contain;
+       background-repeat: no-repeat;
+       margin-right: 5px;
+       /* display: inline-block;
+        position: relative;
+        height: 1rem;
+        width: 20px;
+        color: white; */
+     }
+
+     .listStyle img {
+       width: 18px;
+       height: 18px;
+     }
+
+     .listStyle span {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     }
+
+     .child_show {
+       padding-top: 8px;
+       border-top: 1px solid #dcdcdc;
+     }
+
+     .child_question_container {
+       background: rgba(248, 248, 248, 1);
+       margin-left: 40px;
+       width: calc(100% - 80px);
+     }
+
+     .child_radio {
+       display: flex;
+       justify-content: space-between;
+       padding: 5px 0;
+       align-items: center;
+     }
+
+     .child_radio .label {
+       font-size: 12px;
+       color: rgba(119, 119, 119, 1);
+       line-height: 17px;
+     }
+
+     .child_radio .check {}
+
+     .child_question_item .el-form-item {
+       margin-bottom: 2px;
+     }
+     .star_container{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex-wrap: wrap;
+     }
+     .star_label{
+       font-size:12px;
+       color:rgba(119,119,119,1);
+       float:right;
+       line-height:28px;
+     }
+   </style>
+ </head>
+
+ <body>
+   <div id="app" class="app" :class="evaluateStatus ? 'finish' : 'loading'">
+     <div v-if="!evaluateStatus">
+      <div class="banner">
+        <img :src="bannerUrl3px" alt="">
+      </div>
+      <div  class="answer">
+        <el-row class="section tips" style="padding: 1rem;">
+          <img :src="corner1Url" alt="" class="left">
+          <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;为了给您提供更好的服务，希望您能抽出几分钟时间，将您的感受和建议告诉我们，我们珍视每一位顾客的心声与反馈！
+          </span>
+          <img :src="corner2Url" alt="" class="right">
+        </el-row>
+
+        <div v-if="id && orderType">
+          <el-form v-loading="isCustomerListLoading" ref="form" :model="{'customerQuestionList':customerQuestionList}"
+            :rules="formRules"  size="small">
+            <el-row class="section" v-for="(type,index1) in DeallinkTypeList" :key="index1"
+              :class="type.value == 12 ? 'comments_detail' : 'default'">
+              <el-col :span="24">
+                <el-row>
+                  <!-- <el-col :span="2" style="color:#f56c6c" class="linkType__label">{{type.label}}</el-col> -->
+                  <el-col :span="24" v-if="customerQuestionList && customerQuestionList.length > 0 ">
+                    <el-row v-for="(item,index) in customerQuestionList" :key="index">
+                      <el-col class="father_question_container" :span="24"
+                        v-if="item.linkType != undefined && item.linkType == type.value">
+                        <el-form-item>
+                          <div class="item_label">
+                            <div>
+                              <div class="listStyle" :style="{'background-image':'url('+listTypeUrl+')'}">
+                                <span>{{Number(index) + 1}}</span>
+                              </div>
+                            </div>
+                            <div class="label">
+                              <span>{{item.question}}</span>
+                            </div>
+                          </div>
+                        </el-form-item>
+                        <el-form-item v-if="item.answerType == 'radio'"
+                          :prop="'customerQuestionList.'+ index + '.evaluationAnwser'"
+                          :rules="item.joinCalculation == '0' ? formRules.check : []">
+                          <el-row style="margin-left: 22px;"  v-if="item.answer && item.answer.length > 0">
+                            <el-radio-group v-model="item.evaluationAnwser" @change="changeParents(item,index)">
+                              <el-radio :disabled="!isEdit" v-for="(answer,aIndex) in item.answer" :key="aIndex"
+                                :value="answer" :label="answer" />
+                            </el-radio-group>
+                          </el-row>
+                        </el-form-item>
+                        <el-form-item v-else-if="item.answerType == 'checkbox'"
+                          :prop="'customerQuestionList.'+ index + '.evaluationAnwser'"
+                          :rules="item.joinCalculation == '0' ? formRules.check : []">
+                          <el-row style="margin-left: 22px;"  v-if="item.answer && item.answer.length > 0">
+                            <el-checkbox-group @change="changeParents(item,index)" v-model="item.evaluationAnwser"
+                              class="w100p" clearable filterable placeholder="请选择答案">
+                              <el-checkbox :disabled="!isEdit" v-for="(answer,answerIndex) in item.answer"
+                                :key="answerIndex" :label="answer" :value="answer" />
+                            </el-checkbox-group>
+                          </el-row>
+                        </el-form-item>
+                        <el-form-item v-else-if="item.answerType == 'input'"
+                          :prop="'customerQuestionList.'+ index + '.evaluationAnwser'"
+                          :rules="item.joinCalculation == '0' ? formRules.check : []">
+                          <el-row style="margin-left: 22px;" >
+                              <span v-if="!isEdit">{{item.evaluationAnwser}}</span>
+                              <el-input type="textarea" :autosize="{minRows: 4}" :maxlength="200" v-else
+                                v-model="item.evaluationAnwser"></el-input>
+                          </el-row>
+                        </el-form-item>
+                        <el-form-item v-else-if="item.answerType == 'star'"
+                          :prop="'customerQuestionList.'+ index + '.evaluationAnwser'">
+                          <el-row  style="margin-left: 22px;" >
+                            <el-col :span="24" class="star_container">
+                              <el-rate style="display:inline-block" v-model="item.evaluationAnwser" :max="10" :colors="colors">
+                              </el-rate>
+                              <span class="star_label">{{item.evaluationAnwser || 0}}分</span>
+                            </el-col>
+                          </el-row>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="24"
+                        v-if="item.linkType != undefined && item.linkType == type.value && item.children && item.children.length > 0 "
+                        class="child_question_container">
+                        <div v-for="(child,index2) in item.children" :key="index2">
+                          <div
+                            v-if="item.evaluationAnwser && includesAnswers(child.parentAnswers,item.evaluationAnwser,item.answerType)"
+                            class="child_question_item">
+                            <el-form-item v-if="child.answerType == 'radio'">
+                              <div class="child_radio" v-if="child.answer && child.answer.length > 0">
+                                <div class="label">{{child.question}}</div>
+                                <div class="check">
+                                  <el-radio-group v-model="child.evaluationAnwser">
+                                    <el-radio @click.native.prevent="clickitem(answer,index,index2)" :disabled="!isEdit" v-for="(answer,aIndex) in child.answer" :key="aIndex"
+                                      :value="answer" :label="answer">&nbsp;&nbsp;</el-radio>
+                                  </el-radio-group>
+                                </div>
+                              </div>
+                            </el-form-item>
+                            <el-form-item :label="child.question" v-else-if="child.answerType == 'checkbox'">
+                              <el-row v-if="child.answer && child.answer.length > 0">
+                                <el-checkbox-group v-model="child.evaluationAnwser" class="w100p" clearable filterable
+                                  placeholder="请选择答案">
+                                  <el-checkbox :disabled="!isEdit" v-for="(answer,answerIndex) in child.answer"
+                                    :key="answerIndex" :label="answer" :value="answer" />
+                                </el-checkbox-group>
+                              </el-row>
+                            </el-form-item>
+                            <el-form-item :label="child.question" v-else-if="child.answerType == 'input'">
+                              <span v-if="!isEdit">{{child.evaluationAnwser}}</span>
+                              <el-input v-else type="textarea" :autosize="{minRows: 1,maxRows:1}" resize="none"
+                                :maxlength="200" v-model="child.evaluationAnwser" placeholder="请输入答案"></el-input>
+                            </el-form-item>
+                          </div>
+                        </div>
+                      </el-col>
+                    </el-row>
+                  </el-col>
+                </el-row>
+              </el-col>
+            </el-row>
+            <el-form-item v-if="isCustomerListLoading">
+              <div class="btn_control">
+                <el-button size="small" type="primary" @click="save">提交问卷</el-button>
+              </div>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+    </div>
+     <div v-else class="finish">
+       <img src="http://superlink.top/h5/submission.png" alt="">
+       <p>感谢您的评价！😊</p>
+     </div>
+   </div>
+ </body>
+
+ <!-- import Vue before Element -->
+ <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+ <script src="https://cdn.bootcss.com/element-ui/2.11.0/index.js"></script>
+ <!-- import axios -->
+ <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+
+
+
+<script>
+  'use strict';
+
+var baseurl = "http://47.102.124.64:2199";
+// var baseurl = "http://192.168.0.132:2199";
+var getQuestionCMList = baseurl + '/question/getListByType';
+var saveEvatute = baseurl + '/customerEvaluation/customerEvaluation';
+
+var linkTypeList = [{
+  label: '预约',
+  value: '2',
+  type: '1,2',
+  waybillType: '12'
+}, {
+  label: '配送',
+  value: '3',
+  type: '1,2',
+  waybillType: '12'
+}, {
+  label: '安装',
+  value: '4',
+  type: '2',
+  waybillType: '2'
+}, {
+  label: '产品质量',
+  value: '5',
+  type: '1,2',
+  waybillType: '23'
+}, {
+  label: 'NPS',
+  value: '11',
+  type: '1,2',
+  waybillType: ''
+}, {
+  label: '反馈建议',
+  value: '12',
+  type: '1,2',
+  waybillType: ''
+}];
+
+var generateTree = function generateTree(treeData, pidName, takePid) {
+  // // 把跟节点首先放进数组
+  var tmpTree = [];
+  if (takePid) {
+    tmpTree = treeData.filter(function (node) {
+      return (pidName ? node[pidName] : node.pId) === '';
+    });
+  } else {
+    tmpTree = treeData.filter(function (node) {
+      return (pidName ? node[pidName] : node.pId) === '' || node.root;
+    });
+  }
+
+  // 递归生成节点及子节点数据
+  var findChildren = function findChildren(tree) {
+    tree.forEach(function (node) {
+      node.children = treeData.filter(function (cNode) {
+        return (pidName ? cNode[pidName] : cNode.pId) === node.id;
+      });
+      if (node.children.length) {
+        findChildren(node.children);
+      } else {
+        node.children = null;
+      }
+    });
+  };
+
+  findChildren(tmpTree);
+  var result = JSON.parse(JSON.stringify(tmpTree));
+  return result;
+};
+
+var contains = function contains(child, parent) {
+  var oldLen = child.length + parent.length;
+  var newArr = Array.from(new Set(child.concat(parent)));
+  return oldLen > newArr.length;
+};
+
+var getQueryString = function getQueryString(name) {
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+  var r = window.location.search.substr(1).match(reg);
+  if (r != null) {
+    return unescape(r[2]);
+  }
+  return null;
+};
+
+new Vue({
+  el: '#app',
+  mounted: function mounted() {
+    var urlParam = decodeURI(window.location.href.split("?")[1]);
+    this.id = getQueryString('id');
+    var type = getQueryString('orderType');
+    this.orderType = type == '0' ? '1' : type == '1' ? '2' : type == '2' ? '3' : '';
+    if (this.id && this.orderType) {
+      this.getQuestion({ id: this.id, type: "1", waybillType: this.orderType });
+    } else {
+      this.$message({
+        message: '评价链接地址错误',
+        type: 'error'
+      });
+    }
+  },
+
+  computed: {
+    DeallinkTypeList: function DeallinkTypeList() {
+      var waybillType = this.orderType == '0' ? '1' : this.orderType == '1' ? '2' : this.orderType == '2' ? '3' : '';
+      return linkTypeList.filter(function (item) {
+        return item.type != waybillType;
+      });
+    }
+  },
+  data: function data() {
+    return {
+      bannerUrl3px: 'http://xhe.oss-cn-hangzhou.aliyuncs.com/ims/2019-08-16/logo1/c84f1f4645494648a8a145f30c3c3f0d/logo1.png',
+      bannerUrl1px: 'http://xhe.oss-cn-hangzhou.aliyuncs.com/ims/2019-08-16/logo1/a109ed95d4974989ab78cd2a1ab70fc3/logo1.png',
+      listTypeUrl: 'http://xhe.oss-cn-hangzhou.aliyuncs.com/ims/2019-08-16/logo1/5cca8d05516640eeadfa324b95bfaffa/logo1.png',
+      corner1Url: 'http://xhe.oss-cn-hangzhou.aliyuncs.com/ims/2019-08-16/logo1/23f76449e7304cacad26ce55ea3d5bbb/logo1.png',
+      corner2Url: 'http://xhe.oss-cn-hangzhou.aliyuncs.com/ims/2019-08-16/logo1/4175250cfc5a40c4bb892479d2a20c99/logo1.png',
+      colors: { 6: '#99A9BF', 7: { value: '#F7BA2A', excluded: true }, 10: '#FF9900' },
+      orderType: 0,
+      id: '',
+      customerQuestionList: [],
+      isCustomerListLoading: true,
+      form: {
+        waybillType: "",
+        linkType: "",
+        customerType: ""
+      },
+      formRules: {
+        check: [{ required: true, message: "请选择问题答案", trigger: "change" }]
+      },
+      isEdit: true,
+      evaluateStatus:false  //true 为已评价
+    };
+  },
+  methods: {
+    clickitem:function clickitem(e,index1,index2){
+      var _this = this;
+      console.log("click",e,index1,index2,_this.customerQuestionList)
+      var modelValue = _this.customerQuestionList[index1].children[index2].evaluationAnwser
+      e === _this.customerQuestionList[index1].children[index2].evaluationAnwser ? _this.customerQuestionList[index1].children[index2].evaluationAnwser = '' : _this.customerQuestionList[index1].children[index2].evaluationAnwser = e
+    },
+    includesAnswers: function includesAnswers(child, parent, answerType) {
+      if (child && parent && answerType) {
+        var oChild = child.concat([]);
+        var oParent = answerType == "checkbox" ? parent.concat([]) : parent.split(",");
+        return contains(oChild, oParent);
+      } else {
+        return false;
+      }
+    },
+    getQuestion: function getQuestion(params) {
+      var _this = this;
+
+      this.isCustomerListLoading = true;
+      axios.post(getQuestionCMList, params, {
+        headers: {
+          systype: 'ctms'
+        }
+      }).then(function (res) {
+        if (res.status == 200 || res.status == 304) {
+          _this.isCustomerListLoading = false;
+          if (res.data.head.code == '200') {
+            if(res.data.data.status == 1){
+              _this.evaluateStatus = true
+            }else{
+              var list = res.data.data.questionInfoList;
+              list.map(function (item) {
+                item.evaluationAnwser = item.answerType == "checkbox" ? item.evaluationAnwser != "" ? item.evaluationAnwser.split(",") : [] : item.evaluationAnwser;
+              });
+              _this.customerQuestionList = generateTree(list, "parentQuestionId");
+              _this.isCustomerListLoading = false;
+            }
+          }else{
+            _this.$message({
+                message: res.data.head.msg || '发生未知错误，请稍后重试',
+                type: 'error',
+                duration: 2000
+            });
+          }
+        } else {
+          _this.$message({
+            message: res.data.head.msg,
+            type: 'error',
+            duration: 2000
+          });
+        }
+      }).catch(function (error) {
+      });
+    },
+    changeParents: function changeParents(parent, index) {
+      if (parent.children) {
+        this.customerQuestionList[index].children.map(function (item) {
+          item.evaluationAnwser = item.answerType == "checkbox" ? [] : "";
+        });
+      }
+    },
+    save: function save() {
+      var _this2 = this;
+      this.$refs.form.validate(function (isValid) {
+        if (isValid) {
+          var list = JSON.parse(JSON.stringify(_this2.customerQuestionList));
+          var params = {
+            id: _this2.id,
+            type: "1",
+            customerQuestionList: list
+          };
+          axios.post(saveEvatute, params, {
+            headers: {
+              systype: 'ctms'
+            }
+          }).then(function (res) {
+            if (res.status == 200 || res.status == 304) {
+              if (res.data.head.code == '200') {
+                _this2.evaluateStatus = true
+                // _this2.$message({
+                //   message: '评分成功',
+                //   type: 'success'
+                // });
+                // setTimeout(()=>{
+                // },500)
+              } else {
+                _this2.$message({
+                  message: res.data.head.msg,
+                  type: 'error',
+                  duration: 2000
+                });
+              }
+            }
+          }).catch(function (error) {
+            if (error.status === 400 || error.status === 404 || error.status === 500) {
+              _this2.$message({
+                message: '服务器访问出错. Error:' + error.error + ',Message:' + error.message,
+                type: 'error',
+                duration: 5000
+              });
+              return { error: true };
+            }
+          });
+        }
+      });
+    }
+  }
+});
+</script>
+ </html>
