@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .user-info {
   .el-form-item {
-    border-bottom: 1px solid $base-light-color;
+    border-bottom: 1px solid #f2f2f2;
   }
 }
 </style>

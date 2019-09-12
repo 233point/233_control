@@ -120,7 +120,7 @@ export default {
     position: absolute;
     z-index: 2;
     height: 100%;
-    background-color: $base-light-color;
+    background-color: #f2f2f2;
 
     &.handle-left {
       left: 0;

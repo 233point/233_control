@@ -2,22 +2,7 @@
  * COMMON SCSS STYLE
  *
 **/
-$base-font-xs: 12px;
-$base-font-s: 14px;
-$base-font-m: 16px;
-$base-font-l: 18px;
 
-$base-dark-color: #212121;
-$base-light-color: #f2f2f2;
-$base-light-hover-color: #f2f2f236;
-$base-white-color: #fff;
-
-$base-red-color: #f44336;
-$base-blue-color: #03a9f4;
-$base-blue-hover-color: #03a9f430;
-$base-indigo-color: #3f51b5;
-$base-green-color: #4caf50;
-$base-gray-color: #9e9e9e;
 
 @mixin flexCenter {
 	align-items: center;

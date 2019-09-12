@@ -53,7 +53,7 @@ p {
   word-wrap: break-word;
 }
 .time {
-  color: $base-gray-color;
-  font-size: $base-font-xs;
+  color: #9e9e9e;
+  font-size: 12px;
 }
 </style>

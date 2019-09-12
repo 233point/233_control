@@ -283,7 +283,7 @@ export default {
   }
   span:nth-child(2) {
     padding: 0 0.8rem;
-    font-size: $base-font-xs;
+    font-size: 12px;
     float: right;
     font-weight: 500;
   }

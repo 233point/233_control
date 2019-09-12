@@ -3,6 +3,9 @@
 </template>
 
 <script>
+//TODO:
+//1. 登录区分管理员，进入后台管理系统或者前台项目
+//2. 前台项目做适配
 export default {
   name: "App"
 };

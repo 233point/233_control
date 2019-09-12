@@ -79,7 +79,7 @@ export default {
     clear: both;
     height: 2px;
     overflow: hidden;
-    background: $base-light-color;
+    background: #f2f2f2;
     margin-bottom: 10px;
   }
 
@@ -93,7 +93,7 @@ export default {
   .dash-table {
     display: flex;
     margin-bottom: 10px;
-    border: 1px solid darken($base-light-color, 12%);
+    border: 1px solid #f2f2f2;
     border-radius: 8px;
     overflow: hidden;
     ul {
@@ -111,8 +111,8 @@ export default {
         display: inherit;
         justify-content: center;
         align-items: center;
-        border-right: 1px solid darken($base-light-color, 12%);
-        border-bottom: 1px solid darken($base-light-color, 12%);
+        border-right: 1px solid #f2f2f2;
+        border-bottom: 1px solid #f2f2f2;
         box-sizing: border-box;
         height: 35px;
 
@@ -121,7 +121,7 @@ export default {
         }
         &.header {
           height: 35px;
-          background: $base-light-color;
+          background: #f2f2f2;
         }
 
         &.yesterday,
@@ -132,7 +132,7 @@ export default {
 
         &.yesterday {
           font-size: 1.3rem;
-          color: lighten($base-dark-color, 25%);
+          color: #777;
         }
 
         &.today {
@@ -163,13 +163,13 @@ export default {
   display: flex;
   align-items: center;
   padding: 5px 0 15px 0;
-  border-bottom: 1px solid $base-light-color;
+  border-bottom: 1px solid #f2f2f2;
 
   .last-uppdate-time {
     display: inline-block;
     margin-left: 8px;
     font-size: 0.9rem;
-    color: $base-gray-color;
+    color: #9e9e9e;
   }
 
   i {

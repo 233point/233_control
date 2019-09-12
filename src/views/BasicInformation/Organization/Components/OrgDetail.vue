@@ -103,7 +103,7 @@ export default {
   .empty {
     padding: 30px;
     font-size: 2rem;
-    color: darken($base-light-color, 15%);
+    color: #f2f2f2;
   }
 
   .main-content {
@@ -113,13 +113,13 @@ export default {
     .org-form {
       margin: 10px;
       padding: 10px;
-      border: 1px solid darken($base-light-color, 5%);
+      border: 1px solid #f2f2f2;
       border-radius: 8px;
       font-size: 1.2rem;
       box-sizing: border-box;
 
       .el-row {
-        border-bottom: 1px solid darken($base-light-color, 5%);
+        border-bottom: 1px solid #f2f2f2;
 
         span {
           display: inline-block;

@@ -410,7 +410,7 @@ export default {
       color: white;
       margin-right: -5px;
       min-height: 300px;
-      background: url("../../../assets/login/login_left.png");
+      background: url("https://233.calamus.xyz/3.jpg");
       padding: 10px;
       padding: 10px;
       display: flex;
@@ -497,7 +497,7 @@ export default {
 }
 .main.step2 {
   min-height: calc(100vh - 68px);
-  background: url("../../../assets/login/banner.png");
+  background: url("https://cdn.calamus.xyz/blog_ali/calamus_02.png");
   background-size: cover;
 }
 .signin_step1 {

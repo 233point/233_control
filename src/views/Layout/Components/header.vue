@@ -216,8 +216,6 @@ export default {
   padding: 0;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
   background-color: #fff;
-  // color: lighten($base-light-color, 100%);
-  // border-bottom: 1px solid  darken($base-light-color, 10%);
   .menu-control {
     font-size: 18px;
     line-height: 50px;
@@ -252,7 +250,7 @@ export default {
         height: 20px;
         margin-right: 10px;
         border-radius: 20px;
-        background-color: lighten($base-dark-color, 15%);
+        background-color: #777;
         overflow: hidden;
 
         > img {
@@ -289,7 +287,7 @@ export default {
         > div {
           font-size: 1rem;
           font-weight: 400;
-          color: $base-dark-color;
+          color: #212121;
         }
       }
 

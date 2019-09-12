@@ -234,7 +234,7 @@ export default {
     min-width: 600px;
     margin: 10px;
     padding: 10px;
-    border: 1px solid $base-light-color;
+    border: 1px solid #f2f2f2;
     border-radius: 8px;
   }
 }

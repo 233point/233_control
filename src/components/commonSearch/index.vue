@@ -44,9 +44,9 @@ export default {
   margin: 5px;
   width: calc(100% - 10px);
   box-sizing: border-box;
-  border: 1px solid darken($base-light-color, 10%);
+  border: 1px solid #f2f2f2;
   border-radius: 8px;
-  background-color: lighten($base-light-color, 100%);
+  background-color: #f2f2f2;
   opacity: 0.95;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   z-index: 10;

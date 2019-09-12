@@ -38,7 +38,7 @@ export default {
     width: 600px;
     height: 200px;
     margin-top: 15%;
-    background-color: darken($base-light-color, 2%);
+    background-color: #f2f2f2;
     border-radius: 15px;
 
     .content {

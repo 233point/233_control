@@ -154,13 +154,11 @@ header {
     align-items: center;
     justify-content: space-between;
   }
-  
-  
   color: #E1244E;
   z-index: 10;
   background-color: #fff;
   background: rgba(255, 255, 255, 0.7);
-  border-radius: 0 0 20px 20px;
+  // border-radius: 0 0 20px 20px;
   box-shadow: 0 3px 20px 3px rgba(0, 64, 128, .2);
   .logo {
     a {
@@ -189,7 +187,7 @@ header {
         > div {
           font-size: 1rem;
           font-weight: 400;
-          color: $base-dark-color;
+          color: #212121;
         }
       }
     }

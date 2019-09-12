@@ -96,7 +96,7 @@ export default {
   }
   span:nth-child(3) {
     padding-left: 1rem;
-    font-size: $base-font-xs;
+    font-size: 12px;
   }
 }
 .choose_info.active {

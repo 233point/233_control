@@ -54,7 +54,7 @@ export default {
 .select-theme {
   h4 {
     padding: 10px 0;
-    border-bottom: 2px solid $base-light-color;
+    border-bottom: 2px solid #f2f2f2;
     box-sizing: border-box;
   }
 
@@ -62,8 +62,8 @@ export default {
     width: 100%;
     padding: 10px;
     display: inline-block;
-    border-top: 1px solid $base-light-color;
-    color: $base-gray-color;
+    border-top: 1px solid #f2f2f2;
+    color: #9e9e9e;
     box-sizing: border-box;
   }
 

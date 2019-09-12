@@ -154,7 +154,7 @@ export default {
 .personal-setting {
   position: relative;
   height: 100%;
-  background: mix($base-gray-color, #fff, 5%);
+  background: #9e9e9e;
 
   header {
     color: #fff;
@@ -169,7 +169,7 @@ export default {
     justify-content: center;
     align-items: center;
     padding: 15px 0;
-    background: mix($base-gray-color, #fff, 5%);
+    background: #9e9e9e;
 
     .setting-block {
       width: 80%;
@@ -184,7 +184,7 @@ export default {
 
       h4 {
         font-size: 1.1rem;
-        color: darken($base-gray-color, 10%);
+        color: #9e9e9e;
       }
 
       .settings {
@@ -197,8 +197,8 @@ export default {
           clear: both;
           margin: 5px;
           padding: 5px 5px 0 5px;
-          color: darken($base-gray-color, 5%);
-          border-top: 1px solid darken($base-light-color, 5%);
+          color: #f2f2f2;
+          border-top: 1px solid #f2f2f2;
         }
       }
     }

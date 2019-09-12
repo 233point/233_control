@@ -48,12 +48,12 @@ export default {
   // justify-content: center;
   align-items: center;
   padding: 8px 5px;
-  background-color: lighten($base-light-color, 100%);
-  border-bottom: 1px solid darken($base-light-color, 5%);
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
 
   .el-breadcrumb {
     font-size: 0.8rem;
-    color: darken($base-light-color, 15%) !important;
+    color: #f2f2f2 !important;
   }
 }
 </style>

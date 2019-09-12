@@ -68,8 +68,6 @@ export default {
     align-items: center;
     position: relative;
     cursor: pointer;
-    // background: lighten($base-light-color, 1%);
-    // border-right:1px solid darken($base-light-color, 8%);
     transition: all 0.1s ease-in-out 0s;
 
     span {

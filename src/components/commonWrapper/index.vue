@@ -38,7 +38,7 @@ export default {
   margin: 10px;
   box-sizing: border-box;
   // border-radius:8px;
-  border: 1px solid darken($base-light-color, 10%);
+  border: 1px solid #f2f2f2;
   background: white;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.13);
   &.full {

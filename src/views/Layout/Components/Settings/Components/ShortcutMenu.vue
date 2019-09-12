@@ -99,7 +99,7 @@ export default {
       font-size: 14px;
       font-style: italic;
       white-space: nowrap;
-      color: darken($base-light-color, 45%);
+      color: #f2f2f2;
     }
 
     ul {
@@ -112,7 +112,7 @@ export default {
 
         i {
           margin-right: 5px;
-          color: darken($base-light-color, 25%);
+          color: #f2f2f2;
         }
 
         .list-title {
@@ -120,7 +120,7 @@ export default {
         }
 
         &:hover {
-          background-color: $base-light-color;
+          background-color: #f2f2f2;
         }
       }
     }

@@ -85,7 +85,7 @@ export default {
       min-width: 230px;
       padding: 15px 0;
       background: #fff;
-      border-right: 2px solid darken($base-light-color, 5%);
+      border-right: 2px solid #f2f2f2;
       margin-bottom: 20px;
       .scroll-area {
         width: 100%;

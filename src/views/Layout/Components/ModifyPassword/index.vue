@@ -163,8 +163,8 @@ export default {
       padding: 0;
       margin: 0 0 15px 0;
       text-align: left;
-      color: $base-blue-color;
-      border-bottom: 1px solid $base-light-color;
+      color: #03a9f4;
+      border-bottom: 1px solid #f2f2f2;
       font-size: 1.5rem;
     }
   }

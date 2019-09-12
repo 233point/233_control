@@ -1106,7 +1106,7 @@ export default {
 }
 .authLog.tips {
   font-size: 2rem;
-  color: darken($base-light-color, 15%);
+  color: #f2f2f2;
 }
 .scopeOfTransport {
   padding: 20px;

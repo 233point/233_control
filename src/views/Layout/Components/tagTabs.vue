@@ -144,15 +144,15 @@ export default {
 
 <style lang="scss" scoped>
 .tag-tabs {
-  background-color: $base-light-hover-color;
+  background-color: #f2f2f236;
   box-shadow: 10px 0 15px -6px rgba(0, 0, 0, 0.4) inset;
 
   .tab-item {
     display: flex;
     align-items: center;
     padding: 7px 10px 6px 15px;
-    background-color: lighten($base-gray-color, 21%);
-    border-right: 1px solid lighten($base-gray-color, 14%);
+    background-color: #9e9e9e;
+    border-right: 1px solid #9e9e9e;
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
@@ -169,7 +169,7 @@ export default {
       vertical-align: middle;
 
       > i {
-        color: lighten($base-dark-color, 30%);
+        color: #777;
         position: relative;
         top: 1px;
         margin-right: 5px;
@@ -187,16 +187,16 @@ export default {
         }
 
         &:hover {
-          color: darken($base-red-color, 30%);
+          color: #f44336;
           font-weight: 600;
-          background-color: lighten($base-red-color, 5%);
+          background-color: pink;
         }
       }
     }
 
     &.active {
       position: relative;
-      background-color: lighten($base-light-color, 100%);
+      background-color: #f2f2f2;
       box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
         0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
@@ -215,7 +215,7 @@ export default {
     }
 
     &:hover:not(.active) {
-      background-color: lighten($base-gray-color, 24%);
+      background-color: #9e9e9e;
       box-shadow: 0 5px 10px -3px rgba(0, 0, 0, 0.2),
         0 8px 15px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
     }
